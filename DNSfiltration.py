@@ -1,6 +1,9 @@
 import base64
 import paramiko
 
+#update needed. uses ssh instead of dns due to wrong module being imported/used (paramiko). use DNSresolver + **** instead.
+# update "def create_txt"
+
 #encoding
 def encode_to_base43(file_path):
 	try:
@@ -32,6 +35,7 @@ def create_dkim_packets(chunks):
 		dkim_packets.append(dkim_packet)
 	return dkim_packets
 
+# used the wrong protocol here. SSH instead of DNS. We already know SSH will work, the purpose of this was for DNS. Update to use DNSresolver & **** instead of paramiko
 def create_txt(server_ip, username, password, domain, txt_record):
 	zone_file_path = f"/etc/bind/zones/{domain}.db"
 	record_entry = f'{domain}. 3600 in TXT "{txt_record}"\n'
